@@ -3,16 +3,19 @@ package Principal;
 
 
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
-import javax.swing.JButton;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 
 /**
- *
- * @author Jorge Cisneros
+ * @author Jaime Sotelo
  */
 public class VentanaBuscaminas extends javax.swing.JFrame {
 
@@ -22,6 +25,7 @@ public class VentanaBuscaminas extends javax.swing.JFrame {
     int columnas = 30;
     int numMinas = 59;
     
+     Image imagen;
     Boton [][] arrayBotones = new Boton[filas][columnas];
     
 
@@ -62,10 +66,7 @@ public class VentanaBuscaminas extends javax.swing.JFrame {
         
      
     }
-    // creo un metodo con un stwich dentro para las opciones de ganar y perder
-        
-        
-        //creo un stwich para determinar si ganas o pierdes
+  
         
     /**
      * Creates new form VentanaBuscaminas
@@ -104,13 +105,20 @@ public class VentanaBuscaminas extends javax.swing.JFrame {
     private void botonPulsado(MouseEvent e){
         
         Boton miBoton = (Boton) e.getComponent();
-       
+       //esto no funciona pero tendre k poner alguna de las opciones que he pensado
+        miBoton.setVisible(false);
+        //esto otro tampoco
+        
         if(e.getButton() == MouseEvent.BUTTON3){
             miBoton.setText("?");
         }
         else{
             //si es una bomba --> explota y se acaba la partida
-            
+           //aunque no funcione lo pongo igual
+            if(miBoton= numMinas){
+                finDePartida();
+            }
+                
             //declaro un arraylist para ir guardando la lista de botones
             //que tengo que verificar
             ArrayList <Boton> listaDeCasillasAMirar = new ArrayList();
@@ -141,10 +149,16 @@ public class VentanaBuscaminas extends javax.swing.JFrame {
             //si no, verificamos la casilla 
             miBoton.setText("0");
         }
-       
-       
+      
     }
-    
+     //metodo que muestra la imagen cuando pierdes
+       public void finDePartida(){
+         try {
+            imagen = ImageIO.read((getClass().getResource("/images/maxresdefault.png")));
+        } catch (IOException ex) {
+            Logger.getLogger(VentanaBuscaminas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
