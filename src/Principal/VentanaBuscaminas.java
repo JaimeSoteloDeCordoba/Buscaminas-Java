@@ -1,11 +1,13 @@
 
 package Principal;
 
+
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Random;
+import javax.swing.JButton;
 
 
 /**
@@ -21,6 +23,7 @@ public class VentanaBuscaminas extends javax.swing.JFrame {
     int numMinas = 59;
     
     Boton [][] arrayBotones = new Boton[filas][columnas];
+    
 
     private void ponUnaBomba(){
         Random r = new Random();
@@ -29,6 +32,7 @@ public class VentanaBuscaminas extends javax.swing.JFrame {
        
        arrayBotones[f][c].bomba = 1;
        arrayBotones[f][c].setText("B");
+     
     }
     
     //cuentaminas realiza un paso previo que consiste en contar para cada celda
@@ -56,13 +60,17 @@ public class VentanaBuscaminas extends javax.swing.JFrame {
             }
         }
         
-        
+     
     }
-    
+    // creo un metodo con un stwich dentro para las opciones de ganar y perder
+        
+        
+        //creo un stwich para determinar si ganas o pierdes
+        
     /**
      * Creates new form VentanaBuscaminas
      */
-    public VentanaBuscaminas() {
+    public VentanaBuscaminas() {      
         initComponents();
         setSize(1280, 1024);
         //le digo al jFrame que va a usar un layout de rejilla
@@ -89,11 +97,14 @@ public class VentanaBuscaminas extends javax.swing.JFrame {
             ponUnaBomba();
         }
         cuentaMinas();
+        
     }
 
     //este método es llamado cada vez que hacemos clic en un botón
     private void botonPulsado(MouseEvent e){
+        
         Boton miBoton = (Boton) e.getComponent();
+       
         if(e.getButton() == MouseEvent.BUTTON3){
             miBoton.setText("?");
         }
@@ -130,7 +141,8 @@ public class VentanaBuscaminas extends javax.swing.JFrame {
             //si no, verificamos la casilla 
             miBoton.setText("0");
         }
-        
+       
+       
     }
     
     /**
