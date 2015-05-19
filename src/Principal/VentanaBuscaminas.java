@@ -116,8 +116,16 @@ public class VentanaBuscaminas extends javax.swing.JFrame {
             //si es una bomba --> explota y se acaba la partida
            //aunque no funcione lo pongo igual
             if(miBoton= numMinas){
-                finDePartida();
+                finDePartida();               
+                        
+                        }
+            
+            //otro if para comprobar que has ganado al reducir los botones con numero
+            //a 0
+            if(miBoton = 0){
+                finGanador();
             }
+          
                 
             //declaro un arraylist para ir guardando la lista de botones
             //que tengo que verificar
@@ -155,6 +163,14 @@ public class VentanaBuscaminas extends javax.swing.JFrame {
        public void finDePartida(){
          try {
             imagen = ImageIO.read((getClass().getResource("/images/maxresdefault.png")));
+        } catch (IOException ex) {
+            Logger.getLogger(VentanaBuscaminas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       }
+         //metodo que muestra la imagen cuando pierdes
+       public void finGanador(){
+         try {
+            imagen = ImageIO.read((getClass().getResource("/images/ganador.jpg")));
         } catch (IOException ex) {
             Logger.getLogger(VentanaBuscaminas.class.getName()).log(Level.SEVERE, null, ex);
         }
